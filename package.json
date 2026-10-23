@@ -23,6 +23,9 @@
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio"
   },
+  "dependencies": {
+    "kiso.css": "^1.2.4"
+  },
   "devDependencies": {
     "@playwright/test": "^1.60.0",
     "@sveltejs/adapter-cloudflare": "^8.0.0",
