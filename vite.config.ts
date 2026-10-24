@@ -6,6 +6,7 @@ import { sveltekit } from "@sveltejs/kit/vite";
 export default defineConfig({
   staged: {
     "*": ["vp check --fix", "eslint . --fix"],
+    "*.{svelte,css}": "stylelint --fix",
   },
   fmt: {
     svelte: true,
