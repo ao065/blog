@@ -5,7 +5,8 @@ import { sveltekit } from "@sveltejs/kit/vite";
 
 export default defineConfig({
   staged: {
-    "*": "vp check --fix",
+    "*": ["vp check --fix", "eslint . --fix"],
+    "*.{svelte,css}": "stylelint --fix",
   },
   fmt: {
     svelte: true,
@@ -18,10 +19,16 @@ export default defineConfig({
   },
   plugins: lazyPlugins(() => [
     sveltekit({
+      experimental: {
+        remoteFunctions: true,
+      },
       compilerOptions: {
         // Force runes mode for the project, except for libraries. Can be removed in svelte 6.
         runes: ({ filename }) =>
           filename.split(/[/\\]/).includes("node_modules") ? undefined : true,
+        experimental: {
+          async: true,
+        },
       },
       adapter: adapter({
         platformProxy: {
